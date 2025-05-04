@@ -11,7 +11,7 @@ import SwiftUI
 struct XoxocticApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            WelcomeView()
         }
     }
 }
