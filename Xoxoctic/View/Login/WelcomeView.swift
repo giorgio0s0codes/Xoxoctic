@@ -31,6 +31,8 @@ struct WelcomeView: View {
                     .foregroundColor(.white)
                     .padding(.bottom, 30)
                 
+                PrimaryButton(title: "Get Started", onPressed: {})
+                SecondaryButton(title: "I have an account", onPressed: {})
                 
             }
         }
