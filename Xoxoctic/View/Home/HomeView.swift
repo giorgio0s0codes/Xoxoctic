@@ -10,6 +10,20 @@ import SwiftUI
 struct HomeView: View {
     
     @State var isSubscription: Bool = true
+    @State var subArr: [SubscriptionModel] = [
+        SubscriptionModel(dict: ["name":"Spotify", "icon":"spotify_logo", "price": "5.99"] )
+        ,
+        SubscriptionModel(dict: [
+            "name": "YouTube Premium",
+            "icon": "youtube_logo",
+            "price": "18.99"] )
+        ,
+        SubscriptionModel(dict: ["name": "Microsoft OneDrive",
+                                 "icon": "onedrive_logo",
+                                 "price": "29.99"] )
+        ,
+        SubscriptionModel(dict: ["name": "Netflix", "icon": "netflix_logo", "price": "15.00"] )
+    ]
     
     var body: some View {
         ScrollView {
@@ -32,7 +46,7 @@ struct HomeView: View {
                         .scaledToFit()
                         .frame(width: .widthPer(per: 0.25) )
                     
-                    Text("$1,234")
+                    Text("$1,235")
                         .font(.customfont(.bold, fontSize: 40))
                         .foregroundColor(.white)
                     
@@ -78,6 +92,28 @@ struct HomeView: View {
             .background(Color.black)
             .cornerRadius(15)
             .padding()
+            
+            if(isSubscription) {
+                LazyVStack(spacing: 15) {
+                    ForEach( subArr , id: \.id) { sObj in
+                        
+                        SubScriptionHomeRow(sObj: sObj)
+                        
+                    }
+                }
+                .padding(.horizontal, 20)
+            }
+            
+            if(!isSubscription) {
+                LazyVStack(spacing: 15) {
+                    ForEach( subArr , id: \.id) { sObj in
+                        
+                        
+                    }
+                }
+                .padding(.horizontal, 20)
+            }
+            
             
         }
         .background(Color.grayC)
