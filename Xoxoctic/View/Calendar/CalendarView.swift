@@ -93,6 +93,9 @@ struct CalendarView: View {
             
             LazyVGrid(columns: colums , spacing: 8) {
                 
+                ForEach(subArr) { sObj in
+                    SubscriptionCell(sObj: sObj)
+                }
             }
             .padding(.horizontal,20)
             .padding(.bottom, 120)
