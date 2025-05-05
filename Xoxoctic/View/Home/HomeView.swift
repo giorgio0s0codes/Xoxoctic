@@ -70,11 +70,30 @@ struct HomeView: View {
                     }
                     .cornerRadius(16)
                 }
-                
                 .padding()
                 
+                VStack{
+                    Spacer()
+                    HStack{
+                        StatusButton(title: "Active subs", value: "12") {
+                            
+                        }
+                        
+                        StatusButton(title: "Highest subs", value: "$19.99",color: .primary10) {
+                            
+                        }
+                        
+                        StatusButton(title: "Lowest subs", value: "$5.99",color: .secondaryG) {
+                            
+                        }
+                        
+                        
+                    }
+                }
+                .padding()
             }
             .frame(width: .screenWidth, height: .widthPer(per: 1.1) )
+            
             
             HStack{
                 
