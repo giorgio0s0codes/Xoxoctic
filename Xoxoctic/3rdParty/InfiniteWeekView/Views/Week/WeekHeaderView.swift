@@ -13,49 +13,58 @@ struct WeekHeaderView: View {
 
     var body: some View {
         HStack {
-            Text(weekStore.selectedDate.monthToString())
-                .font(.system(size: 24))
-                .fontWeight(.heavy)
-                .foregroundColor(.accentColor)
-            Text(weekStore.selectedDate.toString(format: "yyyy"))
-                .font(.system(size: 24))
-                .fontWeight(.semibold)
+            Text("3 subscriptions for today")
+                .font(.customfont(.semibold, fontSize: 14))
+                .foregroundColor(.gray30)
+            
+            
+            
             Spacer()
-            Button {
-                withAnimation {
-                    weekStore.selectToday()
-                }
-            } label: {
-                Text("Today")
-                    .font(.system(size: 14))
-                    .fontWeight(.semibold)
-                    .foregroundColor(.primary)
-                    .padding(4)
-                    .background(.secondary)
-                    .cornerRadius(4)
-            }
+            
             Button {
                 showDatePicker = true
             } label: {
-                Image(systemName: "calendar")
-                    .font(.system(size: 24))
-                    .foregroundColor(.primary)
+                HStack{
+                    Text(weekStore.selectedDate.monthToString())
+                        .font(.customfont(.semibold, fontSize: 14))
+                        
+                    
+                    Image(systemName: "chevron.down")
+                        .resizable()
+                        .frame(width: 10,height: 10)
+                }
+                
             }
+            .foregroundColor(.white)
+            .padding(.horizontal, 15)
+            .padding(.vertical, 4)
+            .background(Color.gray60.opacity( 0.2 ))
+            .overlay {
+                RoundedRectangle(cornerRadius:  16)
+                    .stroke(  Color.gray70 , lineWidth: 1)
+            }
+            .cornerRadius(16)
             .sheet(isPresented: $showDatePicker) {
                 VStack {
-                    DatePicker("Select Date", selection: $weekStore.selectedDate)
+                    DatePicker("Select Date", selection: $weekStore.selectedDate, displayedComponents: [.date] )
                         .datePickerStyle(GraphicalDatePickerStyle())
                         .cornerRadius(15)
-                        .shadow(color: .black, radius: 5)
                         .padding()
                         .presentationDetents([.height(400), .fraction(20), .medium, .large])
                         .onChange(of: weekStore.selectedDate, perform: { _ in
                             showDatePicker = false
                         })
+                        .tint(.secondaryC)
+                        .colorScheme(.dark)
+                    
+                    Spacer()
                 }
+                .background(Color.gray80)
+                
+                
             }
+            .ignoresSafeArea()
         }
-        .padding(.init(top: 5, leading: 10, bottom: -3, trailing: 8))
     }
 }
 

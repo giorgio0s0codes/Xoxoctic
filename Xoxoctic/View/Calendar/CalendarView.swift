@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CalendarView: View {
+    @EnvironmentObject var weekStore: WeekStore
     @State var subArr: [SubscriptionModel] = [
         SubscriptionModel(dict: ["name":"Spotify", "icon":"spotify_logo", "price": "5.99"] )
         ,
@@ -51,6 +52,12 @@ struct CalendarView: View {
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal, 20)
                     
+                    WeekHeaderView()
+                        .padding(.horizontal, 20)
+                        
+                    WeeksTabView() { week in
+                        WeekView(week: week)
+                    }
                     .frame(height: 110, alignment: .top)
                     .padding(.vertical, 20)
                 }
@@ -109,5 +116,6 @@ struct CalendarView: View {
 struct CalendarView_Previews: PreviewProvider {
     static var previews: some View {
         CalendarView()
+            .environmentObject(WeekStore())
     }
 }
