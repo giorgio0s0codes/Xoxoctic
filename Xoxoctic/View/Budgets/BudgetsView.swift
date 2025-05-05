@@ -62,11 +62,10 @@ struct BudgetsView: View {
             .padding(.top, 64 )
             .padding(.bottom, 30 )
             
-            
             Button {
                 
             } label: {
-                Text("Your budgets are on tack 👍")
+                Text("Your budgets are on track 👍")
                     .font(.customfont(.semibold, fontSize: 14))
             }
             .foregroundColor( .white )
@@ -85,11 +84,11 @@ struct BudgetsView: View {
             LazyVStack(spacing: 15) {
                 ForEach( listArr , id: \.id) { bObj in
                     
+                    BudgetRow(bObj: bObj)
                     
                 }
             }
             .padding(.horizontal, 20)
-            
             
             Button {
                 
