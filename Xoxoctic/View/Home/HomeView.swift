@@ -40,13 +40,24 @@ struct HomeView: View {
                     .resizable()
                     .scaledToFit()
                 
+                ZStack{
+                    ArcShape()
+                        .foregroundColor(.gray.opacity(0.2))
+                    
+                    ArcShape(start: 0, end: 230)
+                        .foregroundColor(.secondaryC)
+                        .shadow( color: .secondaryC.opacity(0.5) , radius: 7)
+                }
+                .frame(width: .widthPer(per: 0.72), height: .widthPer(per: 0.72) )
+                .padding(.bottom, 18)
+                
                 VStack(spacing: .widthPer(per: 0.07)){
                     Image("app_logo")
                         .resizable()
                         .scaledToFit()
                         .frame(width: .widthPer(per: 0.25) )
                     
-                    Text("$1,235")
+                    Text("$1,234")
                         .font(.customfont(.bold, fontSize: 40))
                         .foregroundColor(.white)
                     
@@ -70,7 +81,6 @@ struct HomeView: View {
                     }
                     .cornerRadius(16)
                 }
-                .padding()
                 
                 VStack{
                     Spacer()
@@ -79,7 +89,7 @@ struct HomeView: View {
                             
                         }
                         
-                        StatusButton(title: "Highest subs", value: "$19.99",color: .primary10) {
+                        StatusButton(title: "highest subs", value: "$19.99",color: .primary10) {
                             
                         }
                         
@@ -91,9 +101,9 @@ struct HomeView: View {
                     }
                 }
                 .padding()
+                
             }
             .frame(width: .screenWidth, height: .widthPer(per: 1.1) )
-            
             
             HStack{
                 
