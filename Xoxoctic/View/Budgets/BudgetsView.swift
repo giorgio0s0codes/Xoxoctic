@@ -31,6 +31,8 @@ struct BudgetsView: View {
                             "color": Color.primary10 ] )
     ]
     
+    @State var arcArr : [ArcModel] = []
+    
     var body: some View {
         ScrollView {
             
@@ -42,6 +44,13 @@ struct BudgetsView: View {
                     ArcShape180(width: 10)
                         .foregroundColor(.gray.opacity(0.2))
                     
+                    ForEach(arcArr, id: \.id) { aObj in
+                        
+                        ArcShape180(start: aObj.statVal, end: aObj.value - 9, width: 14)
+                            .foregroundColor(aObj.color)
+                            .shadow( color: aObj.color.opacity(0.5), radius: 7)
+                        
+                    }
                 }
                 .frame(width: .widthPer(per: 0.5), height: .widthPer(per: 0.3))
                 
@@ -61,6 +70,7 @@ struct BudgetsView: View {
             }
             .padding(.top, 64 )
             .padding(.bottom, 30 )
+            
             
             Button {
                 
@@ -89,6 +99,7 @@ struct BudgetsView: View {
                 }
             }
             .padding(.horizontal, 20)
+            
             
             Button {
                 
@@ -120,8 +131,30 @@ struct BudgetsView: View {
            
             
         }
+        .onAppear{
+            getArcProgressData()
+        }
         .background(Color.grayC)
         .ignoresSafeArea()
+    }
+    
+    func getArcProgressData(){
+        
+        var data = [
+            ArcModel(value: 20, color: .secondaryG),
+            ArcModel(value: 45, color: .secondaryC),
+            ArcModel(value: 70, color: .primary10)
+        ]
+        
+        var val = 0.0
+        
+        for i in (0 ..<  data.count) {
+            data[i].statVal = val
+            val = data[i].statVal + data[i].value + 2
+        }
+        
+        arcArr = data
+        
     }
 }
 
