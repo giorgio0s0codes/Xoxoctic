@@ -108,6 +108,7 @@ struct HomeView: View {
                 LazyVStack(spacing: 15) {
                     ForEach( subArr , id: \.id) { sObj in
                         
+                        UpcomingBillRow(sObj: sObj)
                         
                     }
                 }
